@@ -21,14 +21,7 @@ jobs:
         with:
           terraform_version: '1.3.5'  # specify the desired Terraform version
 
-      # Step 3: Install dependencies (e.g., AWS CLI)
-      - name: Install AWS CLI
-        run: |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
-
-      # Step 4: Configure AWS credentials from GitHub secrets
+      # Step 3: Configure AWS credentials from GitHub secrets
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -36,23 +29,23 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
 
-      # Step 5: Initialize Terraform
+      # Step 4: Initialize Terraform
       - name: Terraform Init
         run: terraform init
 
-      # Step 6: Validate Terraform
+      # Step 5: Validate Terraform
       - name: Terraform Validate
         run: terraform validate
 
-      # Step 7: Plan Terraform deployment
+      # Step 6: Plan Terraform deployment
       - name: Terraform Plan
         run: terraform plan
 
-      # Step 8: Apply Terraform to create the EC2 instance
+      # Step 7: Apply Terraform to create the EC2 instance
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
-      # Step 9: Output EC2 Instance Public IP
+      # Step 8: Output EC2 Instance Public IP
       - name: Output EC2 Public IP
         run: |
           PUBLIC_IP=$(terraform output -raw instance_public_ip)
