@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"  # Ensure this matches the region you're targeting
+  region = "us-east-2"  # Ensure this matches the region you're targeting
 }
  
 resource "aws_instance" "Sakthi-Server" {
