@@ -3,7 +3,7 @@ provider "aws" {
 }
  
 resource "aws_instance" "Sakthi-Server" {
-    ami = "ami-0efc43a4067fe9a3e"
+    ami = "ami-020cba7c55df1f615"
     instance_type = "t2.micro" 
 tags = {
     Name = "Demo-Server"
